@@ -83,7 +83,7 @@ renv::restore()
 
 This ensures all required packages are installed in your isolated environment.
 
-### 🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome!
 If you’d like to add lessons, datasets, or exercises:
