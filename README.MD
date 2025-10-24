@@ -184,6 +184,29 @@ This provides code completion, diagnostics, and linting.
 
 After this setup, you can run R scripts, use the interactive terminal, and benefit from code completions and diagnostics directly in VS Code.
 
+5. Install the R Kernel for Jupyter
+
+Make sure you have R installed (you already have it via Homebrew).
+
+Open R (in terminal or VS Code) and install the IRkernel package:
+
+```r
+renv::install("IRkernel")
+IRkernel::installspec(user = TRUE)
+```
+
+IRkernel allows Jupyter to recognize R as a kernel.
+user = TRUE installs the kernel only for your user account.
+
+6.  Install Jupyter
+
+If you don’t already have Jupyter:
+
+```bash
+# Using pip in your terminal
+pip install notebook jupyterlab
+```
+
 ## 🤝 Contributing
 
 Contributions are welcome!
