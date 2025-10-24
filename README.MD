@@ -57,7 +57,7 @@ brew install --cask rstudio
 
 For building packages from source on macOS (especially on Apple Silicon), it can help to explicitly set SDK paths and compiler flags.
 
-1. Create ~/.Renviron
+### 1. Create ~/.Renviron
 
 ```bash
 mkdir -p ~/.Renviron.d
@@ -76,7 +76,7 @@ PKG_CONFIG_PATH=/opt/homebrew/opt/libxml2/lib/pkgconfig:/opt/homebrew/opt/icu4c/
 
 Save ('ctrl' + 'O') and close ('ctrl' + 'X')the file.
 
-2. Create ~/.R/Makevars
+### 2. Create ~/.R/Makevars
 
 ```bash
 mkdir -p ~/.R
@@ -152,13 +152,13 @@ This ensures all required packages are installed in your isolated environment.
 
 To use R within VS Code, follow these steps:
 
-1. Install the R extension:
+### 1. Install the R extension:
 
 - Open VS Code
 - Go to Extensions (⇧⌘X on macOS)
 - Search for R and install the extension by Yuki Ueda (or similar)
 
-2. Set the R executable path:
+### 2. Set the R executable path:
 
 - Press Cmd+, to open Settings
 - Search for R: Rterm Path
@@ -168,7 +168,7 @@ To use R within VS Code, follow these steps:
 /opt/homebrew/bin/R
 ```
 
-3. Install the R Language Server:
+### 3. Install the R Language Server:
 
 - Start R in your terminal or VS Code console:
 
@@ -178,13 +178,13 @@ renv::install("languageserver")
 
 This provides code completion, diagnostics, and linting.
 
-4. Optional: Configure VS Code terminal:
+### 4. Optional: Configure VS Code terminal:
 
 - Ensure that your PATH includes Homebrew and your compilers (/opt/homebrew/bin) so that packages can build correctly.
 
 After this setup, you can run R scripts, use the interactive terminal, and benefit from code completions and diagnostics directly in VS Code.
 
-5. Install the R Kernel for Jupyter
+### 5. Install the R Kernel for Jupyter
 
 Make sure you have R installed (you already have it via Homebrew).
 
@@ -198,7 +198,7 @@ IRkernel::installspec(user = TRUE)
 IRkernel allows Jupyter to recognize R as a kernel.
 user = TRUE installs the kernel only for your user account.
 
-6.  Install Jupyter
+### 6. Install Jupyter
 
 If you don’t already have Jupyter:
 
@@ -212,8 +212,8 @@ pip install notebook jupyterlab
 Contributions are welcome!
 If you’d like to add lessons, datasets, or exercises:
 
-1. Fork the repo
+### 1. Fork the repo
 
-2. Create a feature branch
+### 2. Create a feature branch
 
-3. Submit a pull request
+### 3. Submit a pull request
