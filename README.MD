@@ -83,6 +83,100 @@ renv::restore()
 
 This ensures all required packages are installed in your isolated environment.
 
+## 🛠 macOS: Configuring Renviron and Makevars
+
+For building packages from source on macOS (especially on Apple Silicon), it can help to explicitly set SDK paths and compiler flags.
+
+1. Create ~/.Renviron
+
+```bash
+mkdir -p ~/.Renviron.d
+nano ~/.Renviron
+```
+
+Add the following:
+
+```bash
+# Use the macOS CommandLineTools SDK
+SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+
+# Homebrew pkg-config path for dependencies
+PKG_CONFIG_PATH=/opt/homebrew/opt/libxml2/lib/pkgconfig:/opt/homebrew/opt/icu4c/lib/pkgconfig:/opt/homebrew/opt/gettext/lib/pkgconfig
+```
+
+Save ('ctrl' + 'O') and close ('ctrl' + 'X')the file.
+
+2. Create ~/.R/Makevars
+
+```bash
+mkdir -p ~/.R
+nano ~/.R/Makevars
+```
+
+Add the following flags:
+
+```bash
+# SDK and compiler
+SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+CC=/usr/bin/clang
+CXX=/usr/bin/clang++
+CXX11=/usr/bin/clang++
+CXX14=/usr/bin/clang++
+CXX17=/usr/bin/clang++
+CXX20=/usr/bin/clang++
+
+CFLAGS=-isysroot $(SDKROOT) -O2 -Wall
+CXXFLAGS=-isysroot $(SDKROOT) -O2 -Wall
+LDFLAGS=-isysroot $(SDKROOT)
+
+# Homebrew libraries
+PKG_CONFIG_PATH=/opt/homebrew/opt/libxml2/lib/pkgconfig:/opt/homebrew/opt/icu4c/lib/pkgconfig:/opt/homebrew/opt/gettext/lib/pkgconfig
+CFLAGS += -I/opt/homebrew/include
+CPPFLAGS += -I/opt/homebrew/include
+CXXFLAGS += -I/opt/homebrew/include
+FLIBS=-L/opt/homebrew/opt/gfortran/lib
+F77=/opt/homebrew/bin/gfortran
+FC=/opt/homebrew/bin/gfortran
+```
+
+This ensures R uses the correct compilers, SDK, and Homebrew-installed libraries when building packages from source.
+
+## 💡 Using R with VS Code
+
+To use R within VS Code, follow these steps:
+
+1. Install the R extension:
+
+- Open VS Code
+- Go to Extensions (⇧⌘X on macOS)
+- Search for R and install the extension by Yuki Ueda (or similar)
+
+2. Set the R executable path:
+
+- Press Cmd+, to open Settings
+- Search for R: Rterm Path
+- Set the path to your Homebrew R binary, e.g.:
+
+```swift
+/opt/homebrew/bin/R
+```
+
+3. Install the R Language Server:
+
+- Start R in your terminal or VS Code console:
+
+```r
+renv::install("languageserver")
+```
+
+This provides code completion, diagnostics, and linting.
+
+4. Optional: Configure VS Code terminal:
+
+- Ensure that your PATH includes Homebrew and your compilers (/opt/homebrew/bin) so that packages can build correctly.
+
+After this setup, you can run R scripts, use the interactive terminal, and benefit from code completions and diagnostics directly in VS Code.
+
 ## 🤝 Contributing
 
 Contributions are welcome!
