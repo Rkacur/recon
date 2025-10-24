@@ -53,36 +53,6 @@ Optionally, install RStudio for a more user-friendly IDE:
 brew install --cask rstudio
 ```
 
-## 📦 Setting Up Your Project Environment with renv
-
-[renv](https://cran.r-project.org/web/packages/renv/index.html) is a dependency management system for R.
-<br> It helps ensure everyone working on recon uses the same package versions — critical for reproducibility.
-
-### 1. Initialize renv inside the project
-
-From within your recon directory, start R and run:
-
-```bash
-install.packages("renv")
-renv::init()
-```
-
-This will:
-
-- Create a local renv environment inside the project.
-- Snapshot installed packages to renv.lock.
-
-### 2. Restore dependencies (if renv.lock exists)
-
-If you’ve just cloned the repo and a lockfile already exists:
-
-```bash
-install.packages("renv")
-renv::restore()
-```
-
-This ensures all required packages are installed in your isolated environment.
-
 ## 🛠 macOS: Configuring Renviron and Makevars
 
 For building packages from source on macOS (especially on Apple Silicon), it can help to explicitly set SDK paths and compiler flags.
@@ -140,6 +110,43 @@ FC=/opt/homebrew/bin/gfortran
 ```
 
 This ensures R uses the correct compilers, SDK, and Homebrew-installed libraries when building packages from source.
+
+## 📦 Setting Up Your Project Environment with renv
+
+[renv](https://cran.r-project.org/web/packages/renv/index.html) is a dependency management system for R.
+<br> It helps ensure everyone working on recon uses the same package versions — critical for reproducibility.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/smkacur/recon.git
+cd recon
+```
+
+### 2. Initialize renv inside the project
+
+From within your recon directory, start R and run:
+
+```bash
+install.packages("renv")
+renv::init()
+```
+
+This will:
+
+- Create a local renv environment inside the project.
+- Snapshot installed packages to renv.lock.
+
+### 3. Restore dependencies (if renv.lock exists)
+
+If you’ve just cloned the repo and a lockfile already exists:
+
+```bash
+install.packages("renv")
+renv::restore()
+```
+
+This ensures all required packages are installed in your isolated environment.
 
 ## 💡 Using R with VS Code
 
